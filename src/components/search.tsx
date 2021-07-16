@@ -1,7 +1,7 @@
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField} from "@material-ui/core";
 import {ChangeEvent, useState} from "react";
-import {song} from "./songs.interface";
 import Youtube from "./youtube";
+import {song} from "../data";
 
 function Search(props: { songs: song[] }) {
     const [searchResults, setSearchResults] = useState<song[]>([]);
@@ -50,7 +50,8 @@ function Search(props: { songs: song[] }) {
                                 <TableCell>{song.song}</TableCell>
                                 <TableCell>{song.boxer}</TableCell>
                                 <TableCell>
-                                    <Youtube id="test" source="odSHFTv7tow" start={5} end={10}/>
+                                    <Youtube id="test" source={song.metadata.song.id} start={song.metadata.song.start}
+                                             end={song.metadata.song.end}/>
                                 </TableCell>
                             </TableRow>
                         )}
