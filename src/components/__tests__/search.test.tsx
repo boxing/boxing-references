@@ -3,30 +3,14 @@ import {mount, ReactWrapper} from 'enzyme';
 
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Enzyme from 'enzyme';
+import {data} from "../../data";
 
 Enzyme.configure({adapter: new Adapter()});
 
 let wrapper: ReactWrapper;
 
 const props = {
-    songs: [
-        {
-            song: "Surf Swag",
-            year: 2009,
-            singer: "Lil Wayne",
-            artist: "Lil Wayne",
-            lyrics: "Weezy beat the beat up like Sonny Liston",
-            boxer: "Sonny Liston",
-        },
-        {
-            song: "Bitch Please",
-            year: 1999,
-            artist: "Snoop Dogg",
-            singer: 'Xzibit',
-            lyrics: "Scrap like Mike Tyson",
-            boxer: "Mike Tyson",
-        }
-    ]
+    songs: data,
 }
 
 beforeEach(() => {
@@ -35,6 +19,28 @@ beforeEach(() => {
 
 afterEach(() => {
     wrapper.unmount();
+});
+
+test('should show "no results" if nothing returned', () => {
+    wrapper.find('input').simulate('change', {target: {name: 'text', value: ''}});
+    const div = wrapper.findWhere(node => {
+        return (
+            node.type() === 'div'
+            && node.text() === 'No results'
+        )
+    })
+    expect(div.length).toBe(1);
+});
+
+test('should not show "no results" if results returned', () => {
+    wrapper.find('input').simulate('change', {target: {name: 'text', value: '1999'}});
+    const div = wrapper.findWhere(node => {
+        return (
+            node.type() === 'div'
+            && node.text() === 'No results'
+        )
+    })
+    expect(div.length).toBe(0);
 });
 
 describe('year', () => {

@@ -8,6 +8,7 @@ export interface song {
     genre: Genre;
     metadata: {
         song: youtubeVideo;
+        genius: string;
     }
 }
 
@@ -35,7 +36,8 @@ export const data: song[] = [
                 id: 'eRRKlXbIqHY',
                 start: 187,
                 end: 194,
-            }
+            },
+            genius: 'https://genius.com/13380',
         }
     },
     {
@@ -52,7 +54,8 @@ export const data: song[] = [
                 id: 'y6_cpFMRVQM',
                 start: 42,
                 end: 50,
-            }
+            },
+            genius: 'https://genius.com/21430388',
         }
     }
 ]
