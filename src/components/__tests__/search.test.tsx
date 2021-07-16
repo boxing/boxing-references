@@ -43,6 +43,15 @@ test('should not show "no results" if results returned', () => {
     expect(div.length).toBe(0);
 });
 
+describe('song', () => {
+
+    test('should return results', () => {
+        wrapper.find('input').simulate('change', {target: {name: 'text', value: 'surf'}});
+        expect(wrapper.find('tbody tr').length).toBe(1)
+    });
+
+});
+
 describe('year', () => {
 
     test('should return results', () => {

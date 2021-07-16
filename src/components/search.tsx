@@ -1,4 +1,14 @@
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField} from "@material-ui/core";
+import {
+    Box,
+    Link,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TextField
+} from "@material-ui/core";
 import {ChangeEvent, useState} from "react";
 import Youtube from "./youtube";
 import {song} from "../data";
@@ -25,6 +35,10 @@ function Search(props: { songs: song[] }) {
                 return true;
             }
 
+            if (song.song.toLowerCase().includes(val)) {
+                return true;
+            }
+
             return false;
         });
     }
@@ -46,14 +60,20 @@ function Search(props: { songs: song[] }) {
                             <TableCell>Artist</TableCell>
                             <TableCell>Song</TableCell>
                             <TableCell>Boxer</TableCell>
+                            <TableCell>Lyrics</TableCell>
+                            <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {searchResults.map((song, i) =>
                             <TableRow key={i}>
                                 <TableCell>{song.artist}</TableCell>
-                                <TableCell>{song.song}</TableCell>
+                                <TableCell>
+                                    <Link target="_blank" href={song.metadata.genius}>
+                                        {song.song}
+                                    </Link></TableCell>
                                 <TableCell>{song.boxer}</TableCell>
+                                <TableCell><Box fontStyle="italic">"{song.lyrics}"</Box></TableCell>
                                 <TableCell>
                                     <Youtube id={song.metadata.song.id} source={song.metadata.song.id}
                                              start={song.metadata.song.start}

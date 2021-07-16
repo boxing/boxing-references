@@ -16,7 +16,7 @@ function Youtube(props: { id: string, source: string, start: number, end: number
     // sets a timeout to set it again to true
     // it unrenders and rerenders the iframe element
     if (play.play && !play.show) {
-        setTimeout(() => setPlay({play: true, show: true}), 100)
+        setTimeout(() => setPlay({play: true, show: true}), 1000)
     }
 
     return (
