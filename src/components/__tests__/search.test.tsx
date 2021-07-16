@@ -37,6 +37,15 @@ afterEach(() => {
     wrapper.unmount();
 });
 
+describe('year', () => {
+
+    test('should return results', () => {
+        wrapper.find('input').simulate('change', {target: {name: 'text', value: '1999'}});
+        expect(wrapper.find('tbody tr').length).toBe(1)
+    });
+
+});
+
 describe('artist', () => {
 
     test('should return results regardless of case', () => {

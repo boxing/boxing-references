@@ -1,13 +1,14 @@
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField} from "@material-ui/core";
 import {ChangeEvent, useState} from "react";
 import {song} from "./songs.interface";
+import Youtube from "./youtube";
 
 function Search(props: { songs: song[] }) {
     const [searchResults, setSearchResults] = useState<song[]>([]);
 
-    function inputChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        const results: song[] = props.songs.filter(song => {
-            const val = e.target.value.toLowerCase();
+    function findMatches(value: string): song[] {
+        return props.songs.filter(song => {
+            const val: string = value.toLowerCase();
             if (song.boxer.toLowerCase().includes(val)) {
                 return true;
             }
@@ -15,9 +16,17 @@ function Search(props: { songs: song[] }) {
             if (song.artist.toLowerCase().includes(val)) {
                 return true;
             }
+
+            if (song.year === parseInt(val)) {
+                return true;
+            }
+
+            return false;
         });
-        setSearchResults(results);
     }
+
+    const inputChange =
+        (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setSearchResults(findMatches(e.target.value));
 
     return (
         <div className="search">
@@ -40,6 +49,9 @@ function Search(props: { songs: song[] }) {
                                 <TableCell>{song.artist}</TableCell>
                                 <TableCell>{song.song}</TableCell>
                                 <TableCell>{song.boxer}</TableCell>
+                                <TableCell>
+                                    <Youtube id="test" source="odSHFTv7tow" start={5} end={10}/>
+                                </TableCell>
                             </TableRow>
                         )}
                     </TableBody>
