@@ -39,30 +39,31 @@ function Search(props: { songs: song[] }) {
             </form>
 
             {searchResults.length > 0 &&
-                <TableContainer>
-                    <Table aria-label="Songs with Boxing references">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Artist</TableCell>
-                                <TableCell>Song</TableCell>
-                                <TableCell>Boxer</TableCell>
+            <TableContainer>
+                <Table aria-label="Songs with Boxing references">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Artist</TableCell>
+                            <TableCell>Song</TableCell>
+                            <TableCell>Boxer</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {searchResults.map((song, i) =>
+                            <TableRow key={i}>
+                                <TableCell>{song.artist}</TableCell>
+                                <TableCell>{song.song}</TableCell>
+                                <TableCell>{song.boxer}</TableCell>
+                                <TableCell>
+                                    <Youtube id={song.metadata.song.id} source={song.metadata.song.id}
+                                             start={song.metadata.song.start}
+                                             end={song.metadata.song.end}/>
+                                </TableCell>
                             </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {searchResults.map((song, i) =>
-                                <TableRow key={i}>
-                                    <TableCell>{song.artist}</TableCell>
-                                    <TableCell>{song.song}</TableCell>
-                                    <TableCell>{song.boxer}</TableCell>
-                                    <TableCell>
-                                        <Youtube id="test" source={song.metadata.song.id} start={song.metadata.song.start}
-                                                 end={song.metadata.song.end}/>
-                                    </TableCell>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                        )}
+                    </TableBody>
+                </Table>
+            </TableContainer>
             }
 
             {searchResults.length === 0 && <div>No results</div>}
