@@ -25,7 +25,7 @@ function App() {
 
     return (
         <div className="App">
-            <Search songs={songs}></Search>
+            <Search songs={songs}/>
         </div>
     );
 }
