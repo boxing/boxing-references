@@ -16,7 +16,7 @@ function Youtube(props: { id: string, source: string, start: number, end: number
     // sets a timeout to set it again to true
     // it unrenders and rerenders the iframe element
     if (play.play && !play.show) {
-        setTimeout(() => setPlay({play: true, show: true}), 0)
+        setTimeout(() => setPlay({play: true, show: true}), 100)
     }
 
     return (
@@ -25,7 +25,7 @@ function Youtube(props: { id: string, source: string, start: number, end: number
                 Listen
             </Button>
             {play.play && play.show &&
-            <iframe id={props.id} title={props.id} width="560" height="315" src={youtubeString()}
+            <iframe id={props.id} title={props.id} width="560" height="315" style={{ display: "none" }} src={youtubeString()}
                     frameBorder="0" allowFullScreen/>}
         </div>
     );
