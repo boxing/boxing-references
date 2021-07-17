@@ -22,7 +22,6 @@ const Lyrics = styled.div`
  white-space: pre-wrap;
 `;
 
-
 type SearchType = "all" | "artist" | "song" | "lyrics" | "boxer";
 
 function SearchSongs(songs: song[], value: string, searchType: SearchType): song[] {
@@ -37,17 +36,14 @@ function SearchSongs(songs: song[], value: string, searchType: SearchType): song
     return songs.filter(song => {
         const val: string = value.toLowerCase();
 
-        if (searchType === "artist" && includes(song.artist, val)) {
+        if (
+            (searchType === "artist" && includes(song.artist, val))
+            || (searchType === "song" && includes(song.song, val))
+            || (searchType === "lyrics" && includes(song.lyrics, val))
+            || (searchType === "boxer" && includes(song.boxer, val))
+        ) {
             return true;
-        } else if (searchType === "song" && includes(song.song, val)) {
-            return true;
-        } else if (searchType === "lyrics" && includes(song.lyrics, val)) {
-            return true;
-        } else if (searchType === "boxer" && includes(song.boxer, val)) {
-            return true;
-        }
-
-        if (searchType === "all") {
+        } else if (searchType === "all") {
             if (includes(song.boxer, val)) {
                 return true;
             }
