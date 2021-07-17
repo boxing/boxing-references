@@ -34,8 +34,10 @@ function SearchSongs(songs: song[], value: string, searchType: SearchType): song
         return [];
     }
 
-    const includes = (song: string, val: string): boolean => {
-        return song.toLowerCase().includes(val);
+    const includes = (songParam: string, val: string): boolean => {
+        // takes the song value and removes all accents for additional searching
+        const songParamWithNoAccents = songParam.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return songParam.toLowerCase().includes(val) || songParamWithNoAccents.toLowerCase().includes(val);
     }
 
     return songs.filter(song => {

@@ -20,7 +20,7 @@ afterEach(() => {
     wrapper.unmount();
 });
 
-const findTableCellThatContains = (wrapper: ReactWrapper, text: string, contains: boolean = true): ReactWrapper => {
+const findTableCellThatContains = (wrapper: ReactWrapper, text: string): ReactWrapper => {
     return wrapper.findWhere(node => {
         return (node.type() === 'td'
             && node.text() === text);
@@ -47,6 +47,16 @@ test('should not show "0 results" if results returned', () => {
         )
     })
     expect(div.length).toBe(0);
+});
+
+test('should return results with accents when not using accents', () => {
+    wrapper.find('input').simulate('change', {target: {name: 'text', value: 'Julio Cesar'}});
+    expect(findTableCellThatContains(wrapper, 'Julio César Chávez').length).toBeGreaterThanOrEqual(1);
+});
+
+test('should return results with accents when using accents', () => {
+    wrapper.find('input').simulate('change', {target: {name: 'text', value: 'JuliO César'}});
+    expect(findTableCellThatContains(wrapper, 'Julio César Chávez').length).toBeGreaterThanOrEqual(1);
 });
 
 describe('filter', () => {

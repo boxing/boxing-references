@@ -57,6 +57,78 @@ export const data: song[] = [
             },
             genius: 'https://genius.com/21430388',
         }
+    },
+    {
+        song: "Young Man Rumble",
+        year: 1994,
+        artist: "Max and Sam",
+        singer: "Max Kellerman",
+        lyrics: "Got skills, got stamina\nGot hands of stone like the champ from Panama",
+        boxer: "Roberto Duran",
+        genre: "rap",
+        metadata: {
+            song: {
+                source: "youtube",
+                id: "WF0DntqwMKg",
+                start: 77,
+                end: 82,
+            },
+            genius: "https://genius.com/16338821",
+        }
+    },
+    {
+        song: "Young Man Rumble",
+        year: 1994,
+        artist: "Max and Sam",
+        singer: "Max Kellerman",
+        lyrics: "New York, New York, so nice, got named twice, and...\nI'm harassing' punks like Mike Tyson",
+        boxer: "Mike Tyson",
+        genre: "rap",
+        metadata: {
+            song: {
+                source: "youtube",
+                id: "WF0DntqwMKg",
+                start: 102,
+                end: 107,
+            },
+            genius: "https://genius.com/16338821",
+        }
+    },
+    {
+        song: "Young Man Rumble",
+        year: 1994,
+        artist: "Max and Sam",
+        singer: "Max Kellerman",
+        lyrics: "And I’ll break, connive, it's worse\nThan Pernell Whitaker fuckin' up Chavez",
+        boxer: "Pernell Whitaker",
+        genre: "rap",
+        metadata: {
+            song: {
+                source: "youtube",
+                id: "WF0DntqwMKg",
+                start: 107,
+                end: 112,
+            },
+            genius: "https://genius.com/16338821",
+        }
+    },
+    {
+        song: "Young Man Rumble",
+        year: 1994,
+        artist: "Max and Sam",
+        singer: "Max Kellerman",
+        lyrics: "And I’ll break, connive, it's worse\nThan Pernell Whitaker fuckin' up Chavez",
+        boxer: "Julio César Chávez",
+        genre: "rap",
+        metadata: {
+            song: {
+                source: "youtube",
+                id: "WF0DntqwMKg",
+                start: 107,
+                end: 112,
+            },
+            genius: "https://genius.com/16338821",
+        }
     }
 ]
 
