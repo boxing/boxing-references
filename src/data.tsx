@@ -27,7 +27,7 @@ export const data: song[] = [
         year: 2009,
         singer: "Lil Wayne",
         artist: "Lil Wayne",
-        lyrics: "Weezy beat the beat up like Sonny Liston",
+        lyrics: "Weezy beat the beat up like Sonny Liston\nRedbone do me good then her friend assist her",
         boxer: "Sonny Liston",
         genre: "rap",
         metadata: {

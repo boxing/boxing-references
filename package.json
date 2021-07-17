@@ -1,8 +1,8 @@
 {
-  "name": "boxing-music",
+  "name": "boxing-references",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://mikedidomizio.github.io/boxing-music",
+  "homepage": "http://boxing.github.io/boxing-references",
   "dependencies": {
     "@material-ui/core": "^4.12.1",
     "@material-ui/icons": "^4.11.2",

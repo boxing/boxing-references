@@ -103,7 +103,7 @@ function Search(props: { songs: song[] }) {
         <div className="search">
             <form noValidate autoComplete="off">
                 <Box mr={1} display="inline">
-                    <TextField id="standard-basic" label="Search" onChange={inputChange}/>
+                    <TextField id="standard-basic" label="Search" spellCheck="false" onChange={inputChange}/>
                 </Box>
                 <Box display="inline">
                     <FormControl>
