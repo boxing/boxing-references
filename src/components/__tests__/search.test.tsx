@@ -28,7 +28,7 @@ const findTableCellThatContains = (wrapper: ReactWrapper, text: string): ReactWr
 }
 
 test('should show "0 results" if nothing returned', () => {
-    wrapper.find('input').simulate('change', {target: {name: 'text', value: ''}});
+    wrapper.find('input').simulate('change', {target: {name: 'text', value: 'zxczczxc'}});
     const div = wrapper.findWhere(node => {
         return (
             node.type() === 'div'

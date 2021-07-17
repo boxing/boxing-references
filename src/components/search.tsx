@@ -31,7 +31,7 @@ type SearchType = "all" | "artist" | "song" | "lyrics" | "boxer";
 
 function SearchSongs(songs: song[], value: string, searchType: SearchType): song[] {
     if (value === '') {
-        return [];
+        return songs;
     }
 
     const includes = (songParam: string, val: string): boolean => {
@@ -88,12 +88,12 @@ function Search(props: { songs: song[] }) {
     }
 
     useEffect(() => {
-        function findMatches(value: string, searchType: SearchType): song[] {
-            return SearchSongs(props.songs, value, searchType);
-        }
-
-        setSearchResults(findMatches(search, searchType));
+        setSearchResults(SearchSongs(props.songs, search, searchType));
     }, [search, searchType, props.songs])
+
+    useEffect(() => {
+        document.title = `Boxing references for "${search}"`;
+    }, [search]);
 
     return (
         <div className="search">
