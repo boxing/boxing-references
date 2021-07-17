@@ -91,7 +91,7 @@ export const data: song[] = [
                 start: 102,
                 end: 107,
             },
-            genius: "https://genius.com/16338821",
+            genius: "https://genius.com/Max-and-sam-young-man-rumble-lyrics",
         }
     },
     {
