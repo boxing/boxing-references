@@ -44,7 +44,7 @@ function SearchSongs(songs: song[], value: string, searchType: SearchType): song
         const val: string = value.toLowerCase();
 
         if (
-            (searchType === "artist" && includes(song.artist, val))
+            (searchType === "artist" && (includes(song.artist, val) || includes(song.singer, val)))
             || (searchType === "song" && includes(song.song, val))
             || (searchType === "lyrics" && includes(song.lyrics, val))
             || (searchType === "boxer" && includes(song.boxer, val))
@@ -55,7 +55,7 @@ function SearchSongs(songs: song[], value: string, searchType: SearchType): song
                 return true;
             }
 
-            if (includes(song.artist, val)) {
+            if (includes(song.artist, val) || includes(song.singer, val)) {
                 return true;
             }
 
@@ -109,7 +109,7 @@ function Search(props: { songs: song[] }) {
                             onChange={handleChange}
                         >
                             <option value="all">All</option>
-                            <option value="artist">Artist</option>
+                            <option value="artist">Artist/Singer/Rapper</option>
                             <option value="song">Song</option>
                             <option value="lyrics">Lyrics</option>
                             <option value="boxer">Boxer</option>
@@ -127,6 +127,7 @@ function Search(props: { songs: song[] }) {
                         <TableRow>
                             <TableCell>Artist</TableCell>
                             <TableCell>Song</TableCell>
+                            <TableCell>Singer/Rapper</TableCell>
                             <TableCell>Boxer</TableCell>
                             <TableCell>Lyrics</TableCell>
                             <TableCell/>
@@ -140,6 +141,7 @@ function Search(props: { songs: song[] }) {
                                     <Link target="_blank" href={song.metadata.genius}>
                                         {song.song}
                                     </Link></TableCell>
+                                <TableCell>{song.singer}</TableCell>
                                 <TableCell>{song.boxer}</TableCell>
                                 <TableCell><Lyrics>{song.lyrics}</Lyrics></TableCell>
                                 <TableCell>
