@@ -45,7 +45,7 @@ export const data: song[] = [
         year: 1999,
         artist: "Snoop Dogg",
         singer: 'Xzibit',
-        lyrics: "Scrap like Mike Tyson",
+        lyrics: "Xzibit ready to Scrap like Mike Tyson with his license back\n9 to 5 minimum wage? What type of life is that?",
         boxer: "Mike Tyson",
         genre: "rap",
         metadata: {

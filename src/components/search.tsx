@@ -15,6 +15,13 @@ import {
 import {ChangeEvent, useEffect, useState} from "react";
 import Youtube from "./youtube";
 import {song} from "../data";
+import styled from 'styled-components';
+
+
+const Lyrics = styled.div`
+ white-space: pre-wrap;
+`;
+
 
 type SearchType = "all" | "artist" | "song" | "lyrics" | "boxer";
 
@@ -131,7 +138,7 @@ function Search(props: { songs: song[] }) {
                                         {song.song}
                                     </Link></TableCell>
                                 <TableCell>{song.boxer}</TableCell>
-                                <TableCell><Box fontStyle="italic">"{song.lyrics}"</Box></TableCell>
+                                <TableCell><Lyrics>{song.lyrics}</Lyrics></TableCell>
                                 <TableCell>
                                     <Youtube id={song.metadata.song.id} source={song.metadata.song.id}
                                              start={song.metadata.song.start}
