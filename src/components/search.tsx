@@ -1,6 +1,9 @@
 import {
     Box,
+    FormControl,
+    InputLabel,
     Link,
+    Select,
     Table,
     TableBody,
     TableCell,
@@ -9,25 +12,40 @@ import {
     TableRow,
     TextField
 } from "@material-ui/core";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import Youtube from "./youtube";
 import {song} from "../data";
 
-function Search(props: { songs: song[] }) {
-    const [searchResults, setSearchResults] = useState<song[]>([]);
+type SearchType = "all" | "artist" | "song" | "lyrics" | "boxer";
 
-    function findMatches(value: string): song[] {
-        if (value === '') {
-            return [];
+function SearchSongs(songs: song[], value: string, searchType: SearchType): song[] {
+    if (value === '') {
+        return [];
+    }
+
+    const includes = (song: string, val: string): boolean => {
+        return song.toLowerCase().includes(val);
+    }
+
+    return songs.filter(song => {
+        const val: string = value.toLowerCase();
+
+        if (searchType === "artist" && includes(song.artist, val)) {
+            return true;
+        } else if (searchType === "song" && includes(song.song, val)) {
+            return true;
+        } else if (searchType === "lyrics" && includes(song.lyrics, val)) {
+            return true;
+        } else if (searchType === "boxer" && includes(song.boxer, val)) {
+            return true;
         }
 
-        return props.songs.filter(song => {
-            const val: string = value.toLowerCase();
-            if (song.boxer.toLowerCase().includes(val)) {
+        if (searchType === "all") {
+            if (includes(song.boxer, val)) {
                 return true;
             }
 
-            if (song.artist.toLowerCase().includes(val)) {
+            if (includes(song.artist, val)) {
                 return true;
             }
 
@@ -35,22 +53,62 @@ function Search(props: { songs: song[] }) {
                 return true;
             }
 
-            if (song.song.toLowerCase().includes(val)) {
+            if (includes(song.song, val)) {
                 return true;
             }
+        }
 
-            return false;
-        });
-    }
+        return false;
+    });
+}
+
+function Search(props: { songs: song[] }) {
+    const [searchResults, setSearchResults] = useState<song[]>([]);
+    const [search, setSearch] = useState<string>("");
+    const [searchType, setSearchType] = useState<SearchType>("all");
+
 
     const inputChange =
-        (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setSearchResults(findMatches(e.target.value));
+        (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            setSearch(e.target.value);
+        }
+
+    const handleChange = (e: ChangeEvent<{ name?: string | undefined; value: unknown; }>) => {
+        setSearchType(e.target.value as SearchType);
+    }
+
+    useEffect(() => {
+        function findMatches(value: string, searchType: SearchType): song[] {
+            return SearchSongs(props.songs, value, searchType);
+        }
+
+        setSearchResults(findMatches(search, searchType));
+    }, [search, searchType, props.songs])
 
     return (
         <div className="search">
             <form noValidate autoComplete="off">
-                <TextField id="standard-basic" label="Artist, Boxer, Song" onChange={inputChange}/>
+                <Box mr={1} display="inline">
+                    <TextField id="standard-basic" label="Search" onChange={inputChange}/>
+                </Box>
+                <Box display="inline">
+                    <FormControl>
+                        <InputLabel>Type</InputLabel>
+                        <Select
+                            native
+                            onChange={handleChange}
+                        >
+                            <option value="all">All</option>
+                            <option value="artist">Artist</option>
+                            <option value="song">Song</option>
+                            <option value="lyrics">Lyrics</option>
+                            <option value="boxer">Boxer</option>
+                        </Select>
+                    </FormControl>
+                </Box>
             </form>
+
+            <div>{searchResults.length} result{searchResults.length !== 1 && <span>s</span>}</div>
 
             {searchResults.length > 0 &&
             <TableContainer>
@@ -61,7 +119,7 @@ function Search(props: { songs: song[] }) {
                             <TableCell>Song</TableCell>
                             <TableCell>Boxer</TableCell>
                             <TableCell>Lyrics</TableCell>
-                            <TableCell></TableCell>
+                            <TableCell/>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -85,8 +143,6 @@ function Search(props: { songs: song[] }) {
                 </Table>
             </TableContainer>
             }
-
-            {searchResults.length === 0 && <div>No results</div>}
         </div>
     );
 }
