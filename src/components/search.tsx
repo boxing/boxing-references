@@ -19,7 +19,12 @@ import styled from 'styled-components';
 
 
 const Lyrics = styled.div`
- white-space: pre-wrap;
+    white-space: pre-wrap;
+    font-style: italic;
+ 
+    &::before, &&::after {
+        content: '"';
+    }
 `;
 
 type SearchType = "all" | "artist" | "song" | "lyrics" | "boxer";
