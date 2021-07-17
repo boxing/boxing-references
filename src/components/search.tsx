@@ -92,7 +92,11 @@ function Search(props: { songs: song[] }) {
     }, [search, searchType, props.songs])
 
     useEffect(() => {
-        document.title = `Boxing references for "${search}"`;
+        if (search === '') {
+            document.title = `Boxing references in songs`;
+        } else {
+            document.title = `Boxing references for "${search}"`;
+        }
     }, [search]);
 
     return (
