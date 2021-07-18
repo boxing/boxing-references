@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/boxing-references/static/css/main.a617e044.chunk.css",
-    "main.js": "/boxing-references/static/js/main.9ce50033.chunk.js",
-    "main.js.map": "/boxing-references/static/js/main.9ce50033.chunk.js.map",
+    "main.js": "/boxing-references/static/js/main.019e3b56.chunk.js",
+    "main.js.map": "/boxing-references/static/js/main.019e3b56.chunk.js.map",
     "runtime-main.js": "/boxing-references/static/js/runtime-main.4f2ec958.js",
     "runtime-main.js.map": "/boxing-references/static/js/runtime-main.4f2ec958.js.map",
     "static/js/2.8991303d.chunk.js": "/boxing-references/static/js/2.8991303d.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.4f2ec958.js",
     "static/js/2.8991303d.chunk.js",
     "static/css/main.a617e044.chunk.css",
-    "static/js/main.9ce50033.chunk.js"
+    "static/js/main.019e3b56.chunk.js"
   ]
 }
