@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 import {ChangeEvent, useEffect, useState} from "react";
 import Youtube from "./youtube";
-import {data, song} from "../data";
+import {song} from "../data";
 import styled from 'styled-components';
 import GitHub from '@material-ui/icons/GitHub';
 import Twitter from '@material-ui/icons/Twitter';
@@ -55,7 +55,7 @@ function SearchSongs(songs: song[], value: string, searchType: SearchType): song
         return songs;
     }
 
-    const includes = (songParam: string, val: string): boolean => {
+    const includes = (songParam: string = '', val: string): boolean => {
         // takes the song value and removes all accents for additional searching
         const songParamWithNoAccents = songParam.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         return songParam.toLowerCase().includes(val) || songParamWithNoAccents.toLowerCase().includes(val);
@@ -68,11 +68,11 @@ function SearchSongs(songs: song[], value: string, searchType: SearchType): song
             (searchType === "artist" && (includes(song.artist, val) || includes(song.singer, val)))
             || (searchType === "song" && includes(song.song, val))
             || (searchType === "lyrics" && includes(song.lyrics, val))
-            || (searchType === "boxer" && includes(song.boxer, val))
+            || (searchType === "boxer" && includes(song.boxer?.name, val))
         ) {
             return true;
         } else if (searchType === "all") {
-            if (includes(song.boxer, val)) {
+            if (includes(song.boxer?.name, val)) {
                 return true;
             }
 
@@ -143,6 +143,9 @@ function Search(props: { songs: song[] }) {
         }
     }, [search]);
 
+    const getBoxRecLink = (id: string = '0') => `https://boxrec.com/en/proboxer/${id}`;
+    const getBoxStatLink = (id: string = '0') => `https://boxstat.co/boxer/${id}`;
+
     return (
         <div className="search">
             <form noValidate autoComplete="off">
@@ -194,6 +197,7 @@ function Search(props: { songs: song[] }) {
                             <TableCell>Singer/Rapper</TableCell>
                             <TableCell>Year</TableCell>
                             <TableCell>Boxer</TableCell>
+                            <TableCell>Links</TableCell>
                             <TableCell>Lyrics</TableCell>
                             <TableCell/>
                         </TableRow>
@@ -208,7 +212,14 @@ function Search(props: { songs: song[] }) {
                                     </Link></TableCell>
                                 <TableCell>{song.singer}</TableCell>
                                 <TableCell>{song.year}</TableCell>
-                                <TableCell>{song.boxer}</TableCell>
+                                <TableCell>{song.boxer?.name}
+                                    &nbsp;- <Link target="_blank" href={getBoxRecLink(song.boxer?.boxrecId)}>
+                                        BoxRec
+                                    </Link>
+                                    /<Link target="_blank" href={getBoxStatLink(song.boxer?.boxstatId)}>
+                                        BoxStat
+                                    </Link>
+                                </TableCell>
                                 <TableCell><Lyrics>{song.lyrics}</Lyrics></TableCell>
                                 <TableCell>
                                     <Youtube id={song.metadata.song.id} source={song.metadata.song.id}

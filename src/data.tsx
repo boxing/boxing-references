@@ -1,10 +1,12 @@
+import {Boxer, boxers} from './boxers';
+
 export interface song {
     song: string;
     year: number;
     artist: string;
     singer: string;
     lyrics: string;
-    boxer: string;
+    boxer: Boxer | undefined;
     genre: Genre;
     metadata: {
         song: youtubeVideo;
@@ -28,7 +30,7 @@ export const data: song[] = [
         singer: "Lil Wayne",
         artist: "Lil Wayne",
         lyrics: "Weezy beat the beat up like Sonny Liston\nRedbone do me good then her friend assist her",
-        boxer: "Sonny Liston",
+        boxer: boxers.get('Sonny Liston'),
         genre: "rap",
         metadata: {
             song: {
@@ -46,7 +48,7 @@ export const data: song[] = [
         artist: "Snoop Dogg",
         singer: 'Xzibit',
         lyrics: "Xzibit ready to Scrap like Mike Tyson with his license back\n9 to 5 minimum wage? What type of life is that?",
-        boxer: "Mike Tyson",
+        boxer: boxers.get('Mike Tyson'),
         genre: "rap",
         metadata: {
             song: {
@@ -64,7 +66,7 @@ export const data: song[] = [
         artist: "Max and Sam",
         singer: "Max Kellerman",
         lyrics: "Got skills, got stamina\nGot hands of stone like the champ from Panama",
-        boxer: "Roberto Duran",
+        boxer: boxers.get('Roberto Duran'),
         genre: "rap",
         metadata: {
             song: {
@@ -82,7 +84,7 @@ export const data: song[] = [
         artist: "Max and Sam",
         singer: "Max Kellerman",
         lyrics: "New York, New York, so nice, got named twice, and...\nI'm harassing' punks like Mike Tyson",
-        boxer: "Mike Tyson",
+        boxer: boxers.get('Mike Tyson'),
         genre: "rap",
         metadata: {
             song: {
@@ -100,7 +102,7 @@ export const data: song[] = [
         artist: "Max and Sam",
         singer: "Max Kellerman",
         lyrics: "And I’ll break, connive, it's worse\nThan Pernell Whitaker fuckin' up Chavez",
-        boxer: "Pernell Whitaker",
+        boxer: boxers.get('Pernell Whitaker'),
         genre: "rap",
         metadata: {
             song: {
@@ -118,7 +120,7 @@ export const data: song[] = [
         artist: "Max and Sam",
         singer: "Max Kellerman",
         lyrics: "And I’ll break, connive, it's worse\nThan Pernell Whitaker fuckin' up Chavez",
-        boxer: "Julio César Chávez",
+        boxer: boxers.get('Julio César Chávez'),
         genre: "rap",
         metadata: {
             song: {
