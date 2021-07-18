@@ -3,10 +3,21 @@ import Enzyme, {mount, ReactWrapper} from 'enzyme';
 
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import {data} from "../../data";
+import {useHistory} from "react-router-dom";
 
 Enzyme.configure({adapter: new Adapter()});
 
 let wrapper: ReactWrapper;
+
+jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
+    useLocation: () => ({
+        pathname: "localhost:3000"
+    }),
+    useHistory: () => ({
+        push: () => {},
+    }),
+}));
 
 const props = {
     songs: data,
