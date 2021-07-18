@@ -18,6 +18,7 @@ import {song} from "../data";
 import styled from 'styled-components';
 import GitHub from '@material-ui/icons/GitHub';
 import Twitter from '@material-ui/icons/Twitter';
+import {useHistory, useLocation} from "react-router-dom";
 
 const Lyrics = styled.div`
     white-space: pre-wrap;
@@ -91,17 +92,41 @@ function SearchSongs(songs: song[], value: string, searchType: SearchType): song
     });
 }
 
+function getLocationSearch(locationPathName: string): string[] {
+    const locationPathNameSplit = locationPathName.split('/');
+
+    if (locationPathNameSplit.length === 3) {
+        // basic search
+        return [locationPathNameSplit[locationPathNameSplit.length - 1], "all"];
+    } else if (locationPathNameSplit.length === 4) {
+        // search with type
+        return [locationPathNameSplit[locationPathNameSplit.length - 2], locationPathNameSplit[locationPathNameSplit.length - 1] ?? "all"];
+    }
+
+    return [];
+}
+
 function Search(props: { songs: song[] }) {
+    const location = useLocation();
+    const [locationSearchValue, locationSearchType] = getLocationSearch(location.pathname);
+    const history = useHistory();
+
     const [searchResults, setSearchResults] = useState<song[]>([]);
     const [search, setSearch] = useState<string>("");
     const [searchType, setSearchType] = useState<SearchType>("all");
 
+    if (locationSearchValue && search !== locationSearchValue) {
+        setSearch(locationSearchValue);
+    }
+
     const inputChange =
         (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            history.push(`/boxing-references/${e.target.value}/${locationSearchType}`);
             setSearch(e.target.value);
         }
 
     const handleChange = (e: ChangeEvent<{ name?: string | undefined; value: unknown; }>) => {
+        history.push(`/boxing-references/${locationSearchValue}/${e.target.value}`);
         setSearchType(e.target.value as SearchType);
     }
 
@@ -111,7 +136,7 @@ function Search(props: { songs: song[] }) {
 
     useEffect(() => {
         if (search === '') {
-            document.title = `Boxing references in songs`;
+            document.title = `Boxing references in media`;
         } else {
             document.title = `Boxing references for "${search}"`;
         }
@@ -121,7 +146,8 @@ function Search(props: { songs: song[] }) {
         <div className="search">
             <form noValidate autoComplete="off">
                 <Box mr={1} display="inline">
-                    <TextField id="standard-basic" label="Search" spellCheck="false" onChange={inputChange}/>
+                    <TextField id="standard-basic" label="Search" spellCheck="false" value={search}
+                               onChange={inputChange}/>
                 </Box>
                 <Box display="inline">
                     <FormControl>
@@ -156,7 +182,7 @@ function Search(props: { songs: song[] }) {
 
             {searchResults.length > 0 &&
             <TableContainer>
-                <Table aria-label="Songs with Boxing references">
+                <Table aria-label="Boxing references">
                     <TableHead>
                         <TableRow>
                             <TableCell>Artist</TableCell>
