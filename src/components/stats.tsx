@@ -4,6 +4,7 @@ function Stats(props: { songs: song[] }) {
 
     const popularYears = (): any[] => {
         const results = props.songs.map(i => i.year)
+            // eslint-disable-next-line no-sequences
             .reduce((prev: any, curr: any) => (prev[curr] = ++prev[curr] || 1, prev), {});
 
         return Object.entries(results).sort((a: [string, any], b: [string, any]) => {
@@ -20,7 +21,8 @@ function Stats(props: { songs: song[] }) {
     }
 
     const popularBoxers = (): any[] => {
-        const results = props.songs.map(i => i.boxer)
+        const results = props.songs.map(i => i.boxer?.name)
+            // eslint-disable-next-line no-sequences
             .reduce((prev: any, curr: any) => (prev[curr] = ++prev[curr] || 1, prev), {});
 
         return Object.entries(results).sort((a: [string, any], b: [string, any]) => {

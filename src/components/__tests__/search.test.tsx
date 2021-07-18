@@ -3,7 +3,6 @@ import Enzyme, {mount, ReactWrapper} from 'enzyme';
 
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import {data} from "../../data";
-import {useHistory} from "react-router-dom";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -34,7 +33,7 @@ afterEach(() => {
 const findTableCellThatContains = (wrapper: ReactWrapper, text: string): ReactWrapper => {
     return wrapper.findWhere(node => {
         return (node.type() === 'td'
-            && node.text() === text);
+            && node.text().replace('- BoxRec/BoxStat', '').trim() === text);
     });
 }
 
