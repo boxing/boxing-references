@@ -1,6 +1,7 @@
 /*eslint no-sequences: 0*/
 
 import { song } from '../data';
+import { Grid } from '@material-ui/core';
 
 function Stats(props: { songs: song[] }) {
   const popularYears = (): any[] => {
@@ -29,7 +30,6 @@ function Stats(props: { songs: song[] }) {
   const popularBoxers = (): any[] => {
     const results = props.songs
       .map((i) => i.boxer?.name)
-      // eslint-disable-next-line no-sequences
       .reduce(
         (prev: any, curr: any) => ((prev[curr] = ++prev[curr] || 1), prev),
         {}
@@ -52,14 +52,14 @@ function Stats(props: { songs: song[] }) {
 
   return (
     <div>
-      <div>
+      <Grid container justifyContent="center">
         Top referenced years: {popularYears()[0][0]}, {popularYears()[1][0]},{' '}
         {popularYears()[2][0]}
-      </div>
-      <div>
+      </Grid>
+      <Grid container justifyContent="center">
         Top referenced boxers: {popularBoxers()[0][0]}, {popularBoxers()[1][0]},{' '}
         {popularBoxers()[2][0]}
-      </div>
+      </Grid>
     </div>
   );
 }
