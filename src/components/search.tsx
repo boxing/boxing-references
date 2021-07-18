@@ -14,11 +14,12 @@ import {
 } from "@material-ui/core";
 import {ChangeEvent, useEffect, useState} from "react";
 import Youtube from "./youtube";
-import {song} from "../data";
+import {data, song} from "../data";
 import styled from 'styled-components';
 import GitHub from '@material-ui/icons/GitHub';
 import Twitter from '@material-ui/icons/Twitter';
 import {useHistory, useLocation} from "react-router-dom";
+import Stats from "./stats";
 
 const Lyrics = styled.div`
     white-space: pre-wrap;
@@ -159,6 +160,7 @@ function Search(props: { songs: song[] }) {
                             <option value="all">All</option>
                             <option value="artist">Artist/Singer/Rapper</option>
                             <option value="song">Song</option>
+                            <option value="year">Year</option>
                             <option value="lyrics">Lyrics</option>
                             <option value="boxer">Boxer</option>
                         </Select>
@@ -180,6 +182,8 @@ function Search(props: { songs: song[] }) {
 
             <div>{searchResults.length} result{searchResults.length !== 1 && <span>s</span>}</div>
 
+            <Stats songs={props.songs}/>
+
             {searchResults.length > 0 &&
             <TableContainer>
                 <Table aria-label="Boxing references">
@@ -188,6 +192,7 @@ function Search(props: { songs: song[] }) {
                             <TableCell>Artist</TableCell>
                             <TableCell>Song</TableCell>
                             <TableCell>Singer/Rapper</TableCell>
+                            <TableCell>Year</TableCell>
                             <TableCell>Boxer</TableCell>
                             <TableCell>Lyrics</TableCell>
                             <TableCell/>
@@ -202,6 +207,7 @@ function Search(props: { songs: song[] }) {
                                         {song.song}
                                     </Link></TableCell>
                                 <TableCell>{song.singer}</TableCell>
+                                <TableCell>{song.year}</TableCell>
                                 <TableCell>{song.boxer}</TableCell>
                                 <TableCell><Lyrics>{song.lyrics}</Lyrics></TableCell>
                                 <TableCell>
