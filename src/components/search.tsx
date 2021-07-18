@@ -16,7 +16,8 @@ import {ChangeEvent, useEffect, useState} from "react";
 import Youtube from "./youtube";
 import {song} from "../data";
 import styled from 'styled-components';
-
+import GitHub from '@material-ui/icons/GitHub';
+import Twitter from '@material-ui/icons/Twitter';
 
 const Lyrics = styled.div`
     white-space: pre-wrap;
@@ -26,6 +27,24 @@ const Lyrics = styled.div`
         content: '"';
     }
 `;
+
+const GithubLink = styled.span`
+    position: relative;
+    margin: 0 10px;
+    top: 10px;
+    svg {
+        color: black;    
+    }
+`;
+
+const TwitterLink = styled.span`
+    position: relative;
+    margin: 0 10px;
+    top: 10px;
+    svg {
+        color: rgba(29,161,242,1.00);
+    }
+`
 
 type SearchType = "all" | "artist" | "song" | "lyrics" | "boxer";
 
@@ -77,7 +96,6 @@ function Search(props: { songs: song[] }) {
     const [search, setSearch] = useState<string>("");
     const [searchType, setSearchType] = useState<SearchType>("all");
 
-
     const inputChange =
         (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
             setSearch(e.target.value);
@@ -119,6 +137,18 @@ function Search(props: { songs: song[] }) {
                             <option value="boxer">Boxer</option>
                         </Select>
                     </FormControl>
+
+                    <GithubLink>
+                        <Link target="_blank" rel="noopener" href="https://github.com/boxing/boxing-references">
+                            <GitHub/>
+                        </Link>
+                    </GithubLink>
+
+                    <TwitterLink>
+                        <Link target="_blank" rel="noopener" href="https://twitter.com/Mike_DiDomizio">
+                            <Twitter/>
+                        </Link>
+                    </TwitterLink>
                 </Box>
             </form>
 
