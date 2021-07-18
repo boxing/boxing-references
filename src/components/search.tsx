@@ -96,7 +96,7 @@ function getLocationSearch(locationPathName: string): string[] {
     const locationPathNameSplit = locationPathName.split('/');
 
     if (locationPathNameSplit.length === 3) {
-        // basic search
+        // basic search without type
         return [locationPathNameSplit[locationPathNameSplit.length - 1], "all"];
     } else if (locationPathNameSplit.length === 4) {
         // search with type
