@@ -1,8 +1,29 @@
 name: Deploy
 on: [push]
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          npm install
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
+
+      - name: Push Code Coverage
+        uses: codecov/codecov-action@2838b54ec211d3f145409dbf867d4b3f22af4637
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true # optional (default = false)
+          verbose: false # optional (default = false)
+
   deploy:
     if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' }}
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
