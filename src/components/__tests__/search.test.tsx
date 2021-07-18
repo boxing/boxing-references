@@ -49,7 +49,7 @@ test('should show "0 results" if nothing returned', () => {
   const div = wrapper.findWhere((node) => {
     return node.type() === 'div' && node.text() === '0 results';
   });
-  expect(div.length).toBe(1);
+  expect(div.length).toBeGreaterThanOrEqual(1);
 });
 
 test('should not show "0 results" if results returned', () => {

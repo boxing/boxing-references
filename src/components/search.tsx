@@ -1,6 +1,7 @@
 import {
   Box,
   FormControl,
+  Grid,
   InputLabel,
   Link,
   Select,
@@ -168,57 +169,63 @@ function Search(props: { songs: song[] }) {
 
   return (
     <div className="search">
-      <form noValidate autoComplete="off">
-        <Box mr={1} display="inline">
-          <TextField
-            id="standard-basic"
-            label="Search"
-            spellCheck="false"
-            value={search}
-            onChange={inputChange}
-          />
-        </Box>
-        <Box display="inline">
-          <FormControl>
-            <InputLabel>Type</InputLabel>
-            <Select native onChange={handleChange}>
-              <option value="all">All</option>
-              <option value="artist">Artist/Singer/Rapper</option>
-              <option value="song">Song</option>
-              <option value="year">Year</option>
-              <option value="lyrics">Lyrics</option>
-              <option value="boxer">Boxer</option>
-            </Select>
-          </FormControl>
+      <Grid container justifyContent="center">
+        <form noValidate autoComplete="off">
+          <Box mr={1} display="inline">
+            <TextField
+              id="standard-basic"
+              label="Search"
+              spellCheck="false"
+              value={search}
+              onChange={inputChange}
+            />
+          </Box>
+          <Box display="inline">
+            <FormControl>
+              <InputLabel>Type</InputLabel>
+              <Select native onChange={handleChange}>
+                <option value="all">All</option>
+                <option value="artist">Artist/Singer/Rapper</option>
+                <option value="song">Song</option>
+                <option value="year">Year</option>
+                <option value="lyrics">Lyrics</option>
+                <option value="boxer">Boxer</option>
+              </Select>
+            </FormControl>
 
-          <GithubLink>
-            <Link
-              target="_blank"
-              rel="noopener"
-              href="https://github.com/boxing/boxing-references"
-            >
-              <GitHub />
-            </Link>
-          </GithubLink>
+            <GithubLink>
+              <Link
+                target="_blank"
+                rel="noopener"
+                href="https://github.com/boxing/boxing-references"
+              >
+                <GitHub />
+              </Link>
+            </GithubLink>
 
-          <TwitterLink>
-            <Link
-              target="_blank"
-              rel="noopener"
-              href="https://twitter.com/Mike_DiDomizio"
-            >
-              <Twitter />
-            </Link>
-          </TwitterLink>
-        </Box>
-      </form>
+            <TwitterLink>
+              <Link
+                target="_blank"
+                rel="noopener"
+                href="https://twitter.com/Mike_DiDomizio"
+              >
+                <Twitter />
+              </Link>
+            </TwitterLink>
+          </Box>
+        </form>
+      </Grid>
 
-      <div>
-        {searchResults.length} result
-        {searchResults.length !== 1 && <span>s</span>}
-      </div>
+      <Grid container justifyContent="center">
+        <div>
+          {searchResults.length} result
+          {searchResults.length !== 1 && <span>s</span>}
+        </div>
+      </Grid>
 
-      <Stats songs={props.songs} />
+      <Grid container justifyContent="center">
+        <Stats songs={props.songs} />
+      </Grid>
 
       {searchResults.length > 0 && (
         <TableContainer>
