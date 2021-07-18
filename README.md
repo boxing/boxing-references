@@ -8,7 +8,7 @@ List of songs that reference boxers with links to the songs.
 
 In the future it may include other forms of media.
 
-Built on React with Material UI.  Jest for testing. 
+Built on React with Material UI. Jest for testing.
 
 ## Website
 
@@ -20,7 +20,7 @@ This is deployed to https://boxing.github.io/boxing-references/.
 
 ### Contributing
 
-Data is in the `./src/data.tsx` file.  
+Data is in the `./src/data.tsx` file.
 
 #### Lyrics
 
