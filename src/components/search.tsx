@@ -21,6 +21,7 @@ import GitHub from '@material-ui/icons/GitHub';
 import Twitter from '@material-ui/icons/Twitter';
 import { useHistory, useLocation } from 'react-router-dom';
 import Stats from './stats';
+import SearchResults from './search-results';
 
 const Lyrics = styled.div`
   white-space: pre-wrap;
@@ -226,6 +227,8 @@ function Search(props: { songs: song[] }) {
       <Grid container justifyContent="center">
         <Stats songs={props.songs} />
       </Grid>
+
+      {searchResults.length > 0 && <SearchResults results={searchResults} />}
 
       {searchResults.length > 0 && (
         <TableContainer>
