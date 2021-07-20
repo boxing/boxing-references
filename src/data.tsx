@@ -312,4 +312,24 @@ export const data: song[] = [
       genius: 'https://genius.com/2155008',
     },
   },
+  {
+    song: 'Light Up ft. Jay-Z',
+    year: 2010,
+    artist: 'Drake',
+    singer: 'Jay-Z',
+    lyrics:
+      'I just landed in that G450\n' +
+      "Caught the Mayweather fight 'cause the satellite was crispy, uhh",
+    boxer: boxers.get('Floyd Mayweather Jr.'),
+    genre: 'rap',
+    metadata: {
+      song: {
+        source: 'youtube',
+        id: 'ObUzFn2HyyE',
+        start: 164,
+        end: 171,
+      },
+      genius: 'https://genius.com/17720',
+    },
+  },
 ];

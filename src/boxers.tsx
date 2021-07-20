@@ -65,3 +65,9 @@ boxers.set('Naseem Hamed', {
   boxrecId: '4462',
   boxstatId: '30454-naseem-hamed',
 });
+
+boxers.set('Floyd Mayweather Jr.', {
+  name: 'Floyd Mayweather Jr.',
+  boxrecId: '352',
+  boxstatId: '63514-floyd-mayweather-jr',
+});
