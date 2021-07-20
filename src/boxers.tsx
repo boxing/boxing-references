@@ -41,3 +41,9 @@ boxers.set('Muhammad Ali', {
   boxrecId: '180',
   boxstatId: '12808-muhammad-ali',
 });
+
+boxers.set('Manny Pacquiao', {
+  name: 'Manny Pacquiao',
+  boxrecId: '6129',
+  boxstatId: '34959-manny-pacquiao',
+});
