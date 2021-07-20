@@ -169,7 +169,7 @@ export const data: song[] = [
   {
     song: 'The M.G.M.',
     year: 1997,
-    artist: 'Ghostface Killah & Raekwon - M.G.M.',
+    artist: 'Ghostface Killah & Raekwon',
     singer: 'Ghostface Killah/Raekwon',
     lyrics:
       'Now I remember, he from Bear Mountain\n' +
@@ -189,7 +189,7 @@ export const data: song[] = [
   {
     song: 'The M.G.M.',
     year: 1997,
-    artist: 'Ghostface Killah & Raekwon - M.G.M.',
+    artist: 'Ghostface Killah & Raekwon',
     singer: 'Ghostface Killah',
     lyrics:
       'Seventh round, Chavez bleeding from his right ear\n' +
@@ -209,7 +209,7 @@ export const data: song[] = [
   {
     song: 'The M.G.M.',
     year: 1997,
-    artist: 'Ghostface Killah & Raekwon - M.G.M.',
+    artist: 'Ghostface Killah & Raekwon',
     singer: 'Raekwon/Ghostface',
     lyrics:
       "Tenth round, Chavez tearing 'em down\n" +
@@ -230,7 +230,7 @@ export const data: song[] = [
   {
     song: 'The M.G.M.',
     year: 1997,
-    artist: 'Ghostface Killah & Raekwon - M.G.M.',
+    artist: 'Ghostface Killah & Raekwon',
     singer: 'Ghostface Killah/Raekwon',
     lyrics:
       "Tenth round, Chavez tearing 'em down\n" +
@@ -251,7 +251,7 @@ export const data: song[] = [
   {
     song: 'The M.G.M.',
     year: 1997,
-    artist: 'Ghostface Killah & Raekwon - M.G.M.',
+    artist: 'Ghostface Killah & Raekwon',
     singer: 'Raekwon/Ghostface Killah',
     lyrics:
       'Yo, they wound up stopping the fight\n' +
