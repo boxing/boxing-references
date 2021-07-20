@@ -29,7 +29,8 @@ function Stats(props: { songs: song[] }) {
 
   const popularYears: [string, number][] = getPopularYears();
   const popularBoxers: [string, number][] = getPopularBoxers();
-  const stat = (arg: (string | number)[]) => `${arg[0]} (${arg[1]})`;
+
+  const stat = (obj: [string, number]) => `${obj[0]} (${obj[1]})`;
 
   return (
     <div>
@@ -37,16 +38,18 @@ function Stats(props: { songs: song[] }) {
         <div>
           <Grid container justifyContent="center">
             <Typography variant="body2">
-              Top referenced years: {stat(popularYears[0])},{' '}
-              {stat(popularYears[1])}, {stat(popularYears[2])},{' '}
-              {stat(popularYears[3])}, {stat(popularYears[4])}
+              Top referenced years:{' '}
+              {popularYears.map((object: [string, number], i) => (
+                <span key={i}>{(i ? ', ' : '') + stat(object)}</span>
+              ))}
             </Typography>
           </Grid>
           <Grid container justifyContent="center">
             <Typography variant="body2">
-              Top referenced boxers: {stat(popularBoxers[0])},{' '}
-              {stat(popularBoxers[1])}, {stat(popularBoxers[2])},{' '}
-              {stat(popularBoxers[3])}, {stat(popularBoxers[4])}
+              Top referenced boxers:{' '}
+              {popularBoxers.map((object: [string, number], i) => (
+                <span key={i}>{(i ? ', ' : '') + stat(object)}</span>
+              ))}
             </Typography>
           </Grid>
         </div>
