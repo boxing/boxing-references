@@ -145,4 +145,25 @@ export const data: song[] = [
       genius: 'https://genius.com/Nipsey-hussle-rose-clique-lyrics',
     },
   },
+  {
+    song: 'Shot Caller (Remix) ft. Diddy, Rick Ross, Charlie Rock',
+    year: 2012,
+    artist: 'French Montana',
+    singer: 'Rick Ross',
+    lyrics:
+      "We on the floor, Pacquiao the world's greatest\n" +
+      'Boxing niggas all I ever did was mob and weave\n' +
+      "Now the crib eight mil, that's on everything",
+    boxer: boxers.get('Manny Pacquiao'),
+    genre: 'rap',
+    metadata: {
+      song: {
+        source: 'youtube',
+        id: 'IlrW8_WIy7g',
+        start: 161,
+        end: 169,
+      },
+      genius: 'https://genius.com/601528',
+    },
+  },
 ];
