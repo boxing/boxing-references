@@ -19,8 +19,8 @@ afterEach(() => {
   wrapper.unmount();
 });
 
-test('should have 10 results', () => {
-  expect(wrapper.html().match(/\((\d+)\)/g)?.length).toBe(10);
+test('should have more than 10', () => {
+  expect(wrapper.html().match(/\((\d+)\)/g)?.length).toBeGreaterThan(10);
 });
 
 test('should results sorted where elements go in order descending', () => {
