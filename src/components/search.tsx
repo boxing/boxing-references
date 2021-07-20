@@ -53,7 +53,7 @@ function Search(props: { songs: song[] }) {
       </Grid>
 
       <Grid container justifyContent="center">
-        <Stats songs={props.songs} />
+        <Stats songs={searchResults} />
       </Grid>
 
       {searchResults.length > 0 && (
