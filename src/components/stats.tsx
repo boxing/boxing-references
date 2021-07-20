@@ -4,7 +4,7 @@ import { song } from '../data';
 import { Grid } from '@material-ui/core';
 
 function Stats(props: { songs: song[] }) {
-  const popularYears = (): any[] => {
+  const getPopularYears = (): any[] => {
     const results = props.songs
       .map((i) => i.year)
       .reduce(
@@ -27,7 +27,7 @@ function Stats(props: { songs: song[] }) {
     );
   };
 
-  const popularBoxers = (): any[] => {
+  const getPopularBoxers = (): any[] => {
     const results = props.songs
       .map((i) => i.boxer?.name)
       .reduce(
@@ -50,15 +50,21 @@ function Stats(props: { songs: song[] }) {
     );
   };
 
+  const popularYears: any = getPopularYears();
+  const popularBoxers: any = getPopularBoxers();
+  const stat = (arg: any[]) => `${arg[0]} (${arg[1]})`;
+
   return (
     <div>
       <Grid container justifyContent="center">
-        Top referenced years: {popularYears()[0][0]}, {popularYears()[1][0]},{' '}
-        {popularYears()[2][0]}
+        Top referenced years: {stat(popularYears[0])}, {stat(popularYears[1])},{' '}
+        {stat(popularYears[2])}, {stat(popularYears[3])},{' '}
+        {stat(popularYears[4])}
       </Grid>
       <Grid container justifyContent="center">
-        Top referenced boxers: {popularBoxers()[0][0]}, {popularBoxers()[1][0]},{' '}
-        {popularBoxers()[2][0]}
+        Top referenced boxers: {stat(popularBoxers[0])},{' '}
+        {stat(popularBoxers[1])}, {stat(popularBoxers[2])},{' '}
+        {stat(popularBoxers[3])}, {stat(popularBoxers[4])}
       </Grid>
     </div>
   );
