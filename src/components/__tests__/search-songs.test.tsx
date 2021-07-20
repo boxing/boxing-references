@@ -29,6 +29,10 @@ describe('filter', () => {
       1
     );
   });
+
+  test('should filter by year', () => {
+    expect(SearchSongs(data, '2010', 'year').length).toBeGreaterThanOrEqual(1);
+  });
 });
 
 describe('no filter', () => {
