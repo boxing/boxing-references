@@ -12,6 +12,7 @@ import {
   TableHead,
   TableRow,
   TextField,
+  Typography,
 } from '@material-ui/core';
 import { ChangeEvent, useEffect, useState } from 'react';
 import Youtube from './youtube';
@@ -35,7 +36,7 @@ const Lyrics = styled.div`
 const GithubLink = styled.span`
   position: relative;
   margin: 0 10px;
-  top: 10px;
+  top: 15px;
   svg {
     color: black;
   }
@@ -44,7 +45,7 @@ const GithubLink = styled.span`
 const TwitterLink = styled.span`
   position: relative;
   margin: 0 10px;
-  top: 10px;
+  top: 15px;
   svg {
     color: rgba(29, 161, 242, 1);
   }
@@ -173,6 +174,7 @@ function Search(props: { songs: song[] }) {
         <form noValidate autoComplete="off">
           <Box mr={1} display="inline">
             <TextField
+              size="small"
               id="standard-basic"
               label="Search"
               spellCheck="false"
@@ -181,7 +183,7 @@ function Search(props: { songs: song[] }) {
             />
           </Box>
           <Box display="inline">
-            <FormControl>
+            <FormControl size="small">
               <InputLabel>Type</InputLabel>
               <Select native onChange={handleChange}>
                 <option value="all">All</option>
@@ -217,10 +219,10 @@ function Search(props: { songs: song[] }) {
       </Grid>
 
       <Grid container justifyContent="center">
-        <div>
+        <Typography variant="body2">
           {searchResults.length} result
           {searchResults.length !== 1 && <span>s</span>}
-        </div>
+        </Typography>
       </Grid>
 
       <Grid container justifyContent="center">
