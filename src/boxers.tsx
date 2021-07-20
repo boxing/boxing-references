@@ -47,3 +47,9 @@ boxers.set('Manny Pacquiao', {
   boxrecId: '6129',
   boxstatId: '34959-manny-pacquiao',
 });
+
+boxers.set('Mitch Green', {
+  name: 'Mitch Green',
+  boxrecId: '3171',
+  boxstatId: '18087-mitch-green',
+});

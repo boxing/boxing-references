@@ -166,4 +166,24 @@ export const data: song[] = [
       genius: 'https://genius.com/601528',
     },
   },
+  {
+    song: 'The M.G.M.',
+    year: 1997,
+    artist: 'Ghostface Killah & Raekwon - M.G.M.',
+    singer: 'Ghostface Killah/Raekwon',
+    lyrics:
+      'Now I remember, he from Bear Mountain\n' +
+      'He and Mitch Greene shot the fair one near the water fountain',
+    boxer: boxers.get('Mitch Green'),
+    genre: 'rap',
+    metadata: {
+      song: {
+        source: 'youtube',
+        id: 'NLGi3l2Tujw',
+        start: 74,
+        end: 78,
+      },
+      genius: 'https://genius.com/721238',
+    },
+  },
 ];
