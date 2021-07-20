@@ -186,4 +186,87 @@ export const data: song[] = [
       genius: 'https://genius.com/721238',
     },
   },
+  {
+    song: 'The M.G.M.',
+    year: 1997,
+    artist: 'Ghostface Killah & Raekwon - M.G.M.',
+    singer: 'Ghostface Killah',
+    lyrics:
+      'Seventh round, Chavez bleeding from his right ear\n' +
+      'Yo, keep your eye on that same nigga from right here',
+    boxer: boxers.get('Julio César Chávez'),
+    genre: 'rap',
+    metadata: {
+      song: {
+        source: 'youtube',
+        id: 'NLGi3l2Tujw',
+        start: 78,
+        end: 83,
+      },
+      genius: 'https://genius.com/1390638',
+    },
+  },
+  {
+    song: 'The M.G.M.',
+    year: 1997,
+    artist: 'Ghostface Killah & Raekwon - M.G.M.',
+    singer: 'Raekwon/Ghostface',
+    lyrics:
+      "Tenth round, Chavez tearing 'em down\n" +
+      'Sweet Pea, get ya shit off\n' +
+      "It's like blacks against the Germans, getting hit off",
+    boxer: boxers.get('Julio César Chávez'),
+    genre: 'rap',
+    metadata: {
+      song: {
+        source: 'youtube',
+        id: 'NLGi3l2Tujw',
+        start: 98,
+        end: 103,
+      },
+      genius: 'https://genius.com/2528240',
+    },
+  },
+  {
+    song: 'The M.G.M.',
+    year: 1997,
+    artist: 'Ghostface Killah & Raekwon - M.G.M.',
+    singer: 'Ghostface Killah/Raekwon',
+    lyrics:
+      "Tenth round, Chavez tearing 'em down\n" +
+      'Sweet Pea, get ya shit off\n' +
+      "It's like blacks against the Germans, getting hit off",
+    boxer: boxers.get('Pernell Whitaker'),
+    genre: 'rap',
+    metadata: {
+      song: {
+        source: 'youtube',
+        id: 'NLGi3l2Tujw',
+        start: 98,
+        end: 103,
+      },
+      genius: 'https://genius.com/2528240',
+    },
+  },
+  {
+    song: 'The M.G.M.',
+    year: 1997,
+    artist: 'Ghostface Killah & Raekwon - M.G.M.',
+    singer: 'Raekwon/Ghostface Killah',
+    lyrics:
+      'Yo, they wound up stopping the fight\n' +
+      'Steels took a point away from Chavez\n' +
+      'Rematch scheduled on October 9th',
+    boxer: boxers.get('Julio César Chávez'),
+    genre: 'rap',
+    metadata: {
+      song: {
+        source: 'youtube',
+        id: 'NLGi3l2Tujw',
+        start: 113,
+        end: 118,
+      },
+      genius: 'https://genius.com/Wu-tang-clan-the-mgm-lyrics',
+    },
+  },
 ];
