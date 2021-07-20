@@ -1,27 +1,21 @@
 import {
-  Box,
-  FormControl,
   Grid,
-  InputLabel,
   Link,
-  Select,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
   Typography,
 } from '@material-ui/core';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useState } from 'react';
 import Youtube from './youtube';
 import { song } from '../data';
 import styled from 'styled-components';
-import GitHub from '@material-ui/icons/GitHub';
-import Twitter from '@material-ui/icons/Twitter';
-import { useHistory, useLocation } from 'react-router-dom';
 import Stats from './stats';
+import SearchBar from './search-bar';
+import SearchSongs, { SearchType } from './search-songs';
 
 const Lyrics = styled.div`
   white-space: pre-wrap;
@@ -33,136 +27,13 @@ const Lyrics = styled.div`
   }
 `;
 
-const GithubLink = styled.span`
-  position: relative;
-  margin: 0 10px;
-  top: 15px;
-  svg {
-    color: black;
-  }
-`;
-
-const TwitterLink = styled.span`
-  position: relative;
-  margin: 0 10px;
-  top: 15px;
-  svg {
-    color: rgba(29, 161, 242, 1);
-  }
-`;
-
-type SearchType = 'all' | 'artist' | 'song' | 'lyrics' | 'boxer';
-
-function SearchSongs(
-  songs: song[],
-  value: string,
-  searchType: SearchType
-): song[] {
-  if (value === '') {
-    return songs;
-  }
-
-  const includes = (songParam: string = '', val: string): boolean => {
-    // takes the song value and removes all accents for additional searching
-    const songParamWithNoAccents = songParam
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
-    return (
-      songParam.toLowerCase().includes(val) ||
-      songParamWithNoAccents.toLowerCase().includes(val)
-    );
-  };
-
-  return songs.filter((song) => {
-    const val: string = value.toLowerCase();
-
-    if (
-      (searchType === 'artist' &&
-        (includes(song.artist, val) || includes(song.singer, val))) ||
-      (searchType === 'song' && includes(song.song, val)) ||
-      (searchType === 'lyrics' && includes(song.lyrics, val)) ||
-      (searchType === 'boxer' && includes(song.boxer?.name, val))
-    ) {
-      return true;
-    } else if (searchType === 'all') {
-      if (includes(song.boxer?.name, val)) {
-        return true;
-      }
-
-      if (includes(song.artist, val) || includes(song.singer, val)) {
-        return true;
-      }
-
-      if (song.year === parseInt(val)) {
-        return true;
-      }
-
-      if (includes(song.song, val)) {
-        return true;
-      }
-    }
-
-    return false;
-  });
-}
-
-function getLocationSearch(locationPathName: string): string[] {
-  const locationPathNameSplit = locationPathName.split('/');
-
-  if (locationPathNameSplit.length === 3) {
-    // basic search without type
-    return [locationPathNameSplit[locationPathNameSplit.length - 1], 'all'];
-  } else if (locationPathNameSplit.length === 4) {
-    // search with type
-    return [
-      locationPathNameSplit[locationPathNameSplit.length - 2],
-      locationPathNameSplit[locationPathNameSplit.length - 1] ?? 'all',
-    ];
-  }
-
-  return [];
-}
-
 function Search(props: { songs: song[] }) {
-  const location = useLocation();
-  const [locationSearchValue, locationSearchType] = getLocationSearch(
-    location.pathname
+  const [searchParams, setSearchParams] = useState<string[]>(['', '']);
+  const searchResults = SearchSongs(
+    props.songs,
+    searchParams[0],
+    searchParams[1] as SearchType
   );
-  const history = useHistory();
-
-  const [searchResults, setSearchResults] = useState<song[]>([]);
-  const [search, setSearch] = useState<string>('');
-  const [searchType, setSearchType] = useState<SearchType>('all');
-
-  if (locationSearchValue && search !== locationSearchValue) {
-    setSearch(locationSearchValue);
-  }
-
-  const inputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    history.push(`/boxing-references/${e.target.value}/${locationSearchType}`);
-    setSearch(e.target.value);
-  };
-
-  const handleChange = (
-    e: ChangeEvent<{ name?: string | undefined; value: unknown }>
-  ) => {
-    history.push(`/boxing-references/${locationSearchValue}/${e.target.value}`);
-    setSearchType(e.target.value as SearchType);
-  };
-
-  useEffect(() => {
-    setSearchResults(SearchSongs(props.songs, search, searchType));
-  }, [search, searchType, props.songs]);
-
-  useEffect(() => {
-    if (search === '') {
-      document.title = `Boxing references in media`;
-    } else {
-      document.title = `Boxing references for "${search}"`;
-    }
-  }, [search]);
 
   const getBoxRecLink = (id: string = '0') =>
     `https://boxrec.com/en/proboxer/${id}`;
@@ -171,51 +42,7 @@ function Search(props: { songs: song[] }) {
   return (
     <div className="search">
       <Grid container justifyContent="center">
-        <form noValidate autoComplete="off">
-          <Box mr={1} display="inline">
-            <TextField
-              size="small"
-              id="standard-basic"
-              label="Search"
-              spellCheck="false"
-              value={search}
-              onChange={inputChange}
-            />
-          </Box>
-          <Box display="inline">
-            <FormControl size="small">
-              <InputLabel>Type</InputLabel>
-              <Select native onChange={handleChange}>
-                <option value="all">All</option>
-                <option value="artist">Artist/Singer/Rapper</option>
-                <option value="song">Song</option>
-                <option value="year">Year</option>
-                <option value="lyrics">Lyrics</option>
-                <option value="boxer">Boxer</option>
-              </Select>
-            </FormControl>
-
-            <GithubLink>
-              <Link
-                target="_blank"
-                rel="noopener"
-                href="https://github.com/boxing/boxing-references"
-              >
-                <GitHub />
-              </Link>
-            </GithubLink>
-
-            <TwitterLink>
-              <Link
-                target="_blank"
-                rel="noopener"
-                href="https://twitter.com/Mike_DiDomizio"
-              >
-                <Twitter />
-              </Link>
-            </TwitterLink>
-          </Box>
-        </form>
+        <SearchBar handleSearchParamChange={setSearchParams} />
       </Grid>
 
       <Grid container justifyContent="center">
