@@ -35,3 +35,9 @@ boxers.set('Roberto Duran', {
   boxrecId: '80',
   boxstatId: '11759-roberto-duran',
 });
+
+boxers.set('Muhammad Ali', {
+  name: 'Muhammad Ali',
+  boxrecId: '180',
+  boxstatId: '12808-muhammad-ali',
+});
