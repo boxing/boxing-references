@@ -38,7 +38,7 @@ function Stats(props: { songs: song[] }) {
         <div>
           <Grid container justifyContent="center">
             <Typography variant="body2">
-              Top referenced years:{' '}
+              Referenced years:{' '}
               {popularYears.map((object: [string, number], i) => (
                 <span key={i}>{(i ? ', ' : '') + stat(object)}</span>
               ))}
@@ -46,7 +46,7 @@ function Stats(props: { songs: song[] }) {
           </Grid>
           <Grid container justifyContent="center">
             <Typography variant="body2">
-              Top referenced boxers:{' '}
+              Referenced boxers:{' '}
               {popularBoxers.map((object: [string, number], i) => (
                 <span key={i}>{(i ? ', ' : '') + stat(object)}</span>
               ))}

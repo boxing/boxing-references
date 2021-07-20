@@ -64,6 +64,11 @@ function SearchBar(props: { handleSearchParamChange: Function }) {
     setSearch([locationSearchValue, locationSearchType]);
   }
 
+  // on initial load we'll do a quick search
+  useEffect(() => {
+    props.handleSearchParamChange([locationSearchValue, locationSearchType]);
+  }, []);
+
   useEffect(() => {
     if (search[0] === '') {
       document.title = `Boxing references in media`;
