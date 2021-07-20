@@ -1,7 +1,7 @@
 # Boxing References
 
 [![codecov](https://codecov.io/gh/boxing/boxing-references/branch/master/graph/badge.svg?token=TK2JUEN6QN)](https://codecov.io/gh/boxing/boxing-references)
-![Number of References](https://img.shields.io/badge/Boxing%20references-6-brightgreen)
+![Number of References](https://img.shields.io/badge/Boxing%20references-18-brightgreen)
 
 List of songs that reference boxers with links to the songs.
 
