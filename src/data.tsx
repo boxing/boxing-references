@@ -332,4 +332,26 @@ export const data: song[] = [
       genius: 'https://genius.com/17720',
     },
   },
+  {
+    song: "It Ain't Easy",
+    year: 1995,
+    artist: '2pac',
+    singer: '2pac',
+    lyrics:
+      "Gettin' calls from my nigga Mike Tyson, ain't nothin' nice\n" +
+      "Yo 'Pac, do somethin' righteous with your life\n" +
+      "And even though you're innocent you still a nigga\n" +
+      'So they figure, rather have you behind bars than triggers',
+    boxer: boxers.get('Mike Tyson'),
+    genre: 'rap',
+    metadata: {
+      song: {
+        source: 'youtube',
+        id: 'SjBD5xETEO8',
+        start: 121,
+        end: 132,
+      },
+      genius: 'https://genius.com/718364',
+    },
+  },
 ];
