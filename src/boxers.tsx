@@ -53,3 +53,9 @@ boxers.set('Mitch Green', {
   boxrecId: '3171',
   boxstatId: '18087-mitch-green',
 });
+
+boxers.set('Joe Frazier', {
+  name: 'Joe Frazier',
+  boxrecId: '147',
+  boxstatId: '3144-joe-frazier',
+});

@@ -269,4 +269,26 @@ export const data: song[] = [
       genius: 'https://genius.com/Wu-tang-clan-the-mgm-lyrics',
     },
   },
+  {
+    song: 'Platinum Plus ft. Big Daddy Kane',
+    year: 2000,
+    artist: 'Big L',
+    singer: 'Big Daddy Kane',
+    lyrics:
+      'You tryin to go places, chasin Oasis\n' +
+      'About nothin gettin low wages\n' +
+      'Drink Hennessy with no chasers\n' +
+      "Right hook is like Joe Frasier's, I'm the bodacious",
+    boxer: boxers.get('Joe Frazier'),
+    genre: 'rap',
+    metadata: {
+      song: {
+        source: 'youtube',
+        id: '3gNzypRw9K4',
+        start: 112,
+        end: 130,
+      },
+      genius: 'https://genius.com/Big-l-platinum-plus-lyrics',
+    },
+  },
 ];
