@@ -1,7 +1,13 @@
 import { song } from '../data';
 
-export type SearchType = 'all' | 'artist' | 'song' | 'lyrics' | 'boxer';
-const searchType = ['all', 'artist', 'song', 'lyrics', 'boxer'];
+export type SearchType =
+  | 'all'
+  | 'artist'
+  | 'song'
+  | 'lyrics'
+  | 'boxer'
+  | 'year';
+const searchType = ['all', 'artist', 'song', 'lyrics', 'boxer', 'year'];
 export const isSearchType: (x: string) => boolean = (x: string) =>
   searchType.includes(x);
 
@@ -40,7 +46,8 @@ export default function SearchSongs(
         (includes(song.artist, val) || includes(song.singer, val))) ||
       (searchType === 'song' && includes(song.song, val)) ||
       (searchType === 'lyrics' && includes(song.lyrics, val)) ||
-      (searchType === 'boxer' && includes(song.boxer?.name, val))
+      (searchType === 'boxer' && includes(song.boxer?.name, val)) ||
+      (searchType === 'year' && includes('' + song.year, val))
     ) {
       return true;
     } else if (searchType === 'all') {
@@ -52,7 +59,7 @@ export default function SearchSongs(
         return true;
       }
 
-      if (song.year === parseInt(val)) {
+      if ('' + song.year === '' + val) {
         return true;
       }
 
