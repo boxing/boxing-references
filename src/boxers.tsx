@@ -55,13 +55,13 @@ boxers.set('Mitch Green', {
 });
 
 boxers.set('Joe Frazier', {
-  name: 'Joe Frazier',
+  name: 'Smoking Joe Frazier',
   boxrecId: '147',
   boxstatId: '3144-joe-frazier',
 });
 
 boxers.set('Naseem Hamed', {
-  name: 'Naseem Hamed',
+  name: 'Prince Naseem Hamed',
   boxrecId: '4462',
   boxstatId: '30454-naseem-hamed',
 });
@@ -70,4 +70,16 @@ boxers.set('Floyd Mayweather Jr.', {
   name: 'Floyd Mayweather Jr.',
   boxrecId: '352',
   boxstatId: '63514-floyd-mayweather-jr',
+});
+
+boxers.set('Ray Leonard', {
+  name: 'Sugar Ray Leonard',
+  boxrecId: '269',
+  boxstatId: '17375-sugar-ray-leonard',
+});
+
+boxers.set('Evander Holyfield', {
+  name: 'Evander Holyfield',
+  boxrecId: '499',
+  boxstatId: '18092-evander-holyfield',
 });

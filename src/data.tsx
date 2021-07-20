@@ -354,4 +354,44 @@ export const data: song[] = [
       genius: 'https://genius.com/718364',
     },
   },
+  {
+    song: 'The Message',
+    year: 1995,
+    artist: 'Grand Master Flash and the Furious Five',
+    singer: 'Duke Bootee',
+    lyrics:
+      'All My Children in the daytime, Dallas at night\n' +
+      "Can't even see the game or the Sugar Ray fight",
+    boxer: boxers.get('Ray Leonard'),
+    genre: 'rap',
+    metadata: {
+      song: {
+        source: 'youtube',
+        id: 'aFhEIlXAAwU',
+        start: 143,
+        end: 149,
+      },
+      genius: 'https://genius.com/33593',
+    },
+  },
+  {
+    song: 'Nuthin\' But A "G" Thang',
+    year: 1992,
+    artist: 'Dr. Dre',
+    singer: 'Snoop Dogg',
+    lyrics:
+      "And that's realer than Real-Deal Holyfield\n" +
+      'And now you hookers and hoes know how I feel',
+    boxer: boxers.get('Evander Holyfield'),
+    genre: 'rap',
+    metadata: {
+      song: {
+        source: 'youtube',
+        id: '6xjRdBjmePQ',
+        start: 55,
+        end: 61,
+      },
+      genius: 'https://genius.com/19920114',
+    },
+  },
 ];
