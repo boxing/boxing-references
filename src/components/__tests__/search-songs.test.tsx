@@ -5,6 +5,18 @@ test('isSearchType should return if value passed in as "boxer"', () => {
   expect(isSearchType('boxer')).toBe(true);
 });
 
+test('should return results with accents when not using accents', () => {
+  expect(
+    SearchSongs(data, 'Julio Cesar Chavez', 'all').length
+  ).toBeGreaterThanOrEqual(1);
+});
+
+test('should return results with accents when using accents', () => {
+  expect(
+    SearchSongs(data, 'Julio César Chávez', 'boxer').length
+  ).toBeGreaterThanOrEqual(1);
+});
+
 describe('filter', () => {
   test('should filter by artist', () => {
     expect(

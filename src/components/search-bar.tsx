@@ -9,7 +9,7 @@ import {
 import GitHub from '@material-ui/icons/GitHub';
 import Twitter from '@material-ui/icons/Twitter';
 import styled from 'styled-components';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { isSearchType, SearchType } from './search-songs';
 
@@ -37,31 +37,37 @@ function getLocationSearch(locationPathName: string): [string, SearchType] {
   if (locationPathNameSplit.length === 3) {
     // basic search without type
     return [locationPathNameSplit[locationPathNameSplit.length - 1], 'all'];
-  } else if (
-    locationPathNameSplit.length === 4 &&
-    isSearchType(locationPathNameSplit[locationPathNameSplit.length - 1])
-  ) {
+  } else if (locationPathNameSplit.length === 4) {
     // search with type
     return [
       locationPathNameSplit[locationPathNameSplit.length - 2],
-      (locationPathNameSplit[locationPathNameSplit.length - 1] as SearchType) ??
-        'all',
+      isSearchType(locationPathNameSplit[locationPathNameSplit.length - 1])
+        ? (locationPathNameSplit[
+            locationPathNameSplit.length - 1
+          ] as SearchType)
+        : 'all',
     ];
   }
 
   return ['', 'all'];
 }
 
+/**
+ * Search Bar that calls parent on change.  Updates the URL as search bar changed
+ * @param props handleSearchParamChange is a callback to a parent component
+ */
 function SearchBar(props: { handleSearchParamChange: Function }) {
+  const history = useHistory();
   const location = useLocation();
+  const { handleSearchParamChange } = props;
   const [locationSearchValue, locationSearchType] = getLocationSearch(
     location.pathname
   );
-  const history = useHistory();
-  const [search, setSearch] = useState<[string, SearchType]>(['', 'all']);
 
-  if (locationSearchValue && search[0] !== locationSearchValue) {
-    setSearch([locationSearchValue, locationSearchType]);
+  if (locationSearchValue === '') {
+    document.title = `Boxing references in media`;
+  } else {
+    document.title = `Boxing references for "${locationSearchValue}"`;
   }
 
   // on initial load we'll do a quick search
@@ -70,27 +76,33 @@ function SearchBar(props: { handleSearchParamChange: Function }) {
   }, []);
 
   useEffect(() => {
-    if (search[0] === '') {
-      document.title = `Boxing references in media`;
-    } else {
-      document.title = `Boxing references for "${search}"`;
-    }
-  }, [search]);
+    handleSearchParamChange([locationSearchValue, locationSearchType]);
+  }, [handleSearchParamChange, locationSearchValue, locationSearchType]);
 
+  /**
+   * Fires when the textfield changes
+   * @param e
+   */
   const inputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    history.push(`/boxing-references/${e.target.value}/${locationSearchType}`);
-    props.handleSearchParamChange([e.target.value, locationSearchType]);
-    setSearch([e.target.value, locationSearchType]);
+    // this will trigger the component to rebuild
+    history.replace(
+      `/boxing-references/${e.target.value}/${locationSearchType}`
+    );
   };
 
+  /**
+   * Fires when the dropdown changes
+   * @param e
+   */
   const handleChange = (
     e: ChangeEvent<{ name?: string | undefined; value: unknown }>
   ) => {
-    history.push(`/boxing-references/${locationSearchValue}/${e.target.value}`);
-    props.handleSearchParamChange([locationSearchValue, e.target.value]);
-    setSearch([locationSearchValue, e.target.value as SearchType]);
+    // this will trigger the component to rebuild
+    history.replace(
+      `/boxing-references/${locationSearchValue}/${e.target.value}`
+    );
   };
 
   return (
@@ -101,14 +113,14 @@ function SearchBar(props: { handleSearchParamChange: Function }) {
           id="standard-basic"
           label="Search"
           spellCheck="false"
-          value={search[0]}
+          value={locationSearchValue}
           onChange={inputChange}
         />
       </Box>
       <Box display="inline">
         <FormControl size="small">
           <InputLabel>Type</InputLabel>
-          <Select value={search[1]} native onChange={handleChange}>
+          <Select value={locationSearchType} native onChange={handleChange}>
             <option value="all">All</option>
             <option value="artist">Artist/Singer/Rapper</option>
             <option value="song">Song</option>

@@ -28,11 +28,14 @@ const Lyrics = styled.div`
 `;
 
 function Search(props: { songs: song[] }) {
-  const [searchParams, setSearchParams] = useState<string[]>(['', '']);
+  const [searchParams, setSearchParams] = useState<[string, SearchType]>([
+    '',
+    'all',
+  ]);
   const searchResults = SearchSongs(
     props.songs,
     searchParams[0],
-    searchParams[1] as SearchType
+    searchParams[1]
   );
 
   const getBoxRecLink = (id: string = '0') =>

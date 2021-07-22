@@ -14,7 +14,7 @@ jest.mock('react-router-dom', () => ({
     pathname: 'localhost:3000',
   }),
   useHistory: () => ({
-    push: () => {},
+    replace: () => {},
   }),
 }));
 
@@ -41,16 +41,6 @@ const findTableCellThatContains = (
     );
   });
 };
-
-test('should show "0 results" if nothing returned', () => {
-  wrapper
-    .find('input')
-    .simulate('change', { target: { name: 'text', value: 'zxczczxc' } });
-  const div = wrapper.findWhere((node) => {
-    return node.type() === 'div' && node.text() === '0 results';
-  });
-  expect(div.length).toBeGreaterThanOrEqual(1);
-});
 
 test('should not show "0 results" if results returned', () => {
   wrapper
