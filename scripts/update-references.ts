@@ -5,6 +5,4 @@ execSync(
   `sed -i 's/Boxing%20references-[[:digit:]]\\+/Boxing%20references-${data.length}/g' README.md`
 );
 
-execSync(
-  `git add README.md && git commit -m "Update boxing reference numbers in README.md"`
-);
+execSync(`git add README.md && git commit --amend --no-edit`);

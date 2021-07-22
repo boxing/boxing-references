@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage",
-    "update-reference-number-in-readme": "npx ts-node -O '{\"module\":\"commonjs\"}' ./scripts/update-references.ts",
+    "update-reference-number-in-readme": "sh scripts/update-references.sh",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
