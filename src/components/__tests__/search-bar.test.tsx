@@ -64,7 +64,7 @@ test('should update the URL on input change', () => {
   wrapper
     .find('input')
     .simulate('change', { target: { name: 'text', value: 'tyson' } });
-  expect(mockHandleSearchParamChange).toHaveBeenCalledTimes(2);
+  expect(mockHandleSearchParamChange).toHaveBeenCalledTimes(1);
   // @ts-ignore
   expect(mockHistoryReplace.mock.calls[0][0]).toBe(
     '/boxing-references/tyson/all'
@@ -73,7 +73,7 @@ test('should update the URL on input change', () => {
 
 test('should update the URL on dropdown change', () => {
   wrapper.find('select').simulate('change', { target: { value: 'lyrics' } });
-  expect(mockHandleSearchParamChange).toHaveBeenCalledTimes(2);
+  expect(mockHandleSearchParamChange).toHaveBeenCalledTimes(1);
   // @ts-ignore
   expect(mockHistoryReplace.mock.calls[0][0]).toBe(
     '/boxing-references/mike/lyrics'
