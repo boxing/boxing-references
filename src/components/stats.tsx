@@ -1,7 +1,7 @@
 /*eslint no-sequences: 0*/
 
 import { song } from '../data';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Link, Typography } from '@material-ui/core';
 
 type stat = [string, number][];
 
@@ -40,7 +40,9 @@ function Stats(props: { songs: song[] }) {
             <Typography variant="body2">
               Referenced years:{' '}
               {popularYears.map((object: [string, number], i) => (
-                <span key={i}>{(i ? ', ' : '') + stat(object)}</span>
+                <Link key={i} href={'/boxing-references/' + object[0]}>
+                  {(i ? ', ' : '') + stat(object)}
+                </Link>
               ))}
             </Typography>
           </Grid>
@@ -48,7 +50,9 @@ function Stats(props: { songs: song[] }) {
             <Typography variant="body2">
               Referenced boxers:{' '}
               {popularBoxers.map((object: [string, number], i) => (
-                <span key={i}>{(i ? ', ' : '') + stat(object)}</span>
+                <Link key={i} href={'/boxing-references/' + object[0]}>
+                  {(i ? ', ' : '') + stat(object)}
+                </Link>
               ))}
             </Typography>
           </Grid>

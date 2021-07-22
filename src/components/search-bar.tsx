@@ -72,10 +72,6 @@ function SearchBar(props: { handleSearchParamChange: Function }) {
 
   // on initial load we'll do a quick search
   useEffect(() => {
-    props.handleSearchParamChange([locationSearchValue, locationSearchType]);
-  }, []);
-
-  useEffect(() => {
     handleSearchParamChange([locationSearchValue, locationSearchType]);
   }, [handleSearchParamChange, locationSearchValue, locationSearchType]);
 
