@@ -15,7 +15,7 @@ import { song } from '../data';
 import styled from 'styled-components';
 import Stats from './stats';
 import SearchBar from './search-bar';
-import SearchSongs, { SearchType } from './search-songs';
+import SearchSongs, { SearchType } from '../lib/search-songs';
 
 const Lyrics = styled.div`
   white-space: pre-wrap;
