@@ -11,15 +11,15 @@ Built on React with Material UI. Jest for testing.
 
 ## Website
 
-This is deployed to https://boxing.github.io/boxing-references/.
+This is deployed to https://boxing.github.io/boxing-references/
 
 ## Development
 
-`npm run start` or `yarn start`
+`npm install && npm run start` or `yarn install && yarn start`
 
 ### Contributing
 
-Data is in the `./src/data.tsx` file.
+Data is stored in the `./src/data.tsx` file.
 
 #### Lyrics
 
