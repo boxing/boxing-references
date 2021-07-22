@@ -11,7 +11,7 @@ import Twitter from '@material-ui/icons/Twitter';
 import styled from 'styled-components';
 import { ChangeEvent, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { isSearchType, SearchType } from './search-songs';
+import { isSearchType, SearchType } from '../lib/search-songs';
 
 const GithubLink = styled.span`
   position: relative;
