@@ -1,7 +1,7 @@
 /*eslint no-sequences: 0*/
 
 import { song } from '../data';
-import { Grid, Link, Typography } from '@material-ui/core';
+import { Box, Grid, Link, Typography } from '@material-ui/core';
 
 type stat = [string, number][];
 
@@ -19,16 +19,16 @@ function Stats(props: { songs: song[] }) {
     ) as unknown as [string, number][];
   }
 
-  const getPopularYears = (): stat => {
-    return mapAndReduceFn(props.songs.map((i) => i.year));
-  };
-
-  const getPopularBoxers = (): stat => {
-    return mapAndReduceFn(props.songs.map((i) => i.boxer?.name));
-  };
+  const getPopularYears = (): stat =>
+    mapAndReduceFn(props.songs.map((i) => i.year));
+  const getPopularBoxers = (): stat =>
+    mapAndReduceFn(props.songs.map((i) => i.boxer?.name));
+  const getPopularArtists = (): stat =>
+    mapAndReduceFn(props.songs.map((i) => i.artist));
 
   const popularYears: [string, number][] = getPopularYears();
   const popularBoxers: [string, number][] = getPopularBoxers();
+  const popularArtists: [string, number][] = getPopularArtists();
 
   const stat = (obj: [string, number]) => `${obj[0]} (${obj[1]})`;
 
@@ -36,26 +36,42 @@ function Stats(props: { songs: song[] }) {
     <div>
       {props.songs.length > 0 && (
         <div>
-          <Grid container justifyContent="center">
-            <Typography variant="body2">
-              Referenced years:{' '}
-              {popularYears.map((object: [string, number], i) => (
-                <Link key={i} href={'/boxing-references/' + object[0]}>
-                  {(i ? ', ' : '') + stat(object)}
-                </Link>
-              ))}
-            </Typography>
-          </Grid>
-          <Grid container justifyContent="center">
-            <Typography variant="body2">
-              Referenced boxers:{' '}
-              {popularBoxers.map((object: [string, number], i) => (
-                <Link key={i} href={'/boxing-references/' + object[0]}>
-                  {(i ? ', ' : '') + stat(object)}
-                </Link>
-              ))}
-            </Typography>
-          </Grid>
+          <Box mt={1} mb={1}>
+            <Grid container justifyContent="center">
+              <Typography variant="body2">
+                Years:{' '}
+                {popularYears.map((object: [string, number], i) => (
+                  <Link key={i} href={'/boxing-references/' + object[0]}>
+                    {(i ? ', ' : '') + stat(object)}
+                  </Link>
+                ))}
+              </Typography>
+            </Grid>
+          </Box>
+          <Box mb={1}>
+            <Grid container justifyContent="center">
+              <Typography variant="body2">
+                Boxers:{' '}
+                {popularBoxers.map((object: [string, number], i) => (
+                  <Link key={i} href={'/boxing-references/' + object[0]}>
+                    {(i ? ', ' : '') + stat(object)}
+                  </Link>
+                ))}
+              </Typography>
+            </Grid>
+          </Box>
+          <Box mb={1}>
+            <Grid container justifyContent="center">
+              <Typography variant="body2">
+                Artists:{' '}
+                {popularArtists.map((object: [string, number], i) => (
+                  <Link key={i} href={'/boxing-references/' + object[0]}>
+                    {(i ? ', ' : '') + stat(object)}
+                  </Link>
+                ))}
+              </Typography>
+            </Grid>
+          </Box>
         </div>
       )}
     </div>
