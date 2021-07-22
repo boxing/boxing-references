@@ -23,8 +23,18 @@ function Stats(props: { songs: song[] }) {
     mapAndReduceFn(props.songs.map((i) => i.year));
   const getPopularBoxers = (): stat =>
     mapAndReduceFn(props.songs.map((i) => i.boxer?.name));
-  const getPopularArtists = (): stat =>
-    mapAndReduceFn(props.songs.map((i) => i.artist));
+  const getPopularArtists = (): stat => {
+    // takes both artists and the singer and creates an array and flattens
+    const artistsAndSingers = props.songs
+      .map((i) => {
+        return [i.artist, i.singer];
+      })
+      .flat();
+
+    console.log(artistsAndSingers);
+
+    return mapAndReduceFn(artistsAndSingers);
+  };
 
   const popularYears: [string, number][] = getPopularYears();
   const popularBoxers: [string, number][] = getPopularBoxers();
@@ -63,7 +73,7 @@ function Stats(props: { songs: song[] }) {
           <Box mb={1}>
             <Grid container justifyContent="center">
               <Typography variant="body2">
-                Artists:{' '}
+                Artist/Singer/Rapper:{' '}
                 {popularArtists.map((object: [string, number], i) => (
                   <Link key={i} href={'/boxing-references/' + object[0]}>
                     {(i ? ', ' : '') + stat(object)}
