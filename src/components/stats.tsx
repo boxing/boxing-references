@@ -1,7 +1,8 @@
 /*eslint no-sequences: 0*/
 
 import { song } from '../data';
-import { Box, Grid, Link, Typography } from '@material-ui/core';
+import { Box, Grid, Typography } from '@material-ui/core';
+import BoxingReferencesLink from './boxing-references-link';
 
 type stat = [string, number][];
 
@@ -30,9 +31,6 @@ function Stats(props: { songs: song[] }) {
         return [i.artist, i.singer];
       })
       .flat();
-
-    console.log(artistsAndSingers);
-
     return mapAndReduceFn(artistsAndSingers);
   };
 
@@ -51,9 +49,9 @@ function Stats(props: { songs: song[] }) {
               <Typography variant="body2">
                 Years:{' '}
                 {popularYears.map((object: [string, number], i) => (
-                  <Link key={i} href={'/boxing-references/' + object[0]}>
+                  <BoxingReferencesLink key={i} url={object[0]}>
                     {(i ? ', ' : '') + stat(object)}
-                  </Link>
+                  </BoxingReferencesLink>
                 ))}
               </Typography>
             </Grid>
@@ -63,9 +61,9 @@ function Stats(props: { songs: song[] }) {
               <Typography variant="body2">
                 Boxers:{' '}
                 {popularBoxers.map((object: [string, number], i) => (
-                  <Link key={i} href={'/boxing-references/' + object[0]}>
+                  <BoxingReferencesLink key={i} url={object[0]}>
                     {(i ? ', ' : '') + stat(object)}
-                  </Link>
+                  </BoxingReferencesLink>
                 ))}
               </Typography>
             </Grid>
@@ -75,9 +73,9 @@ function Stats(props: { songs: song[] }) {
               <Typography variant="body2">
                 Artist/Singer/Rapper:{' '}
                 {popularArtists.map((object: [string, number], i) => (
-                  <Link key={i} href={'/boxing-references/' + object[0]}>
+                  <BoxingReferencesLink key={i} url={object[0]}>
                     {(i ? ', ' : '') + stat(object)}
-                  </Link>
+                  </BoxingReferencesLink>
                 ))}
               </Typography>
             </Grid>
