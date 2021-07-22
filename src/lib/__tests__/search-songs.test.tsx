@@ -58,6 +58,10 @@ describe('no filter', () => {
     test('should return results', () => {
       expect(SearchSongs(data, '1999', 'all').length).toBeGreaterThanOrEqual(1);
     });
+
+    test('should return results when not 100% matched', () => {
+      expect(SearchSongs(data, '199', 'all').length).toBeGreaterThanOrEqual(1);
+    });
   });
 
   describe('artist', () => {

@@ -59,7 +59,7 @@ export default function SearchSongs(
         return true;
       }
 
-      if ('' + song.year === '' + val) {
+      if (includes('' + song.year, val)) {
         return true;
       }
 
